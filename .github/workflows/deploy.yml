@@ -1,0 +1,28 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Change this to 'master' if your default branch is named master
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+permissions:
+  contents: write # Needed to allow the action to push to the gh-pages branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./src
+          # By default, this action pushes to the 'gh-pages' branch.
+          # You can customize the branch name if needed:
+          # publish_branch: docs
+          # You can also customize the commit message:
+          # commit_message: "Deploy: ${{ github.event.head_commit.message }}" 
