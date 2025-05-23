@@ -3,11 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - main # Change this to 'master' if your default branch is named master
-  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: write # Needed to allow the action to push to the gh-pages branch
+  contents: write
 
 jobs:
   deploy:
@@ -21,8 +21,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./src
-          # By default, this action pushes to the 'gh-pages' branch.
-          # You can customize the branch name if needed:
-          # publish_branch: docs
-          # You can also customize the commit message:
-          # commit_message: "Deploy: ${{ github.event.head_commit.message }}" 
