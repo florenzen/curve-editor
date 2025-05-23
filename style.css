@@ -1,0 +1,45 @@
+/* Basic styles will be added here */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    padding: 1em;
+}
+
+.controls {
+    width: 250px;
+    padding: 1em;
+    border-right: 1px solid #ccc;
+}
+
+.controls h2 {
+    margin-top: 0;
+}
+
+.controls label,
+.controls select,
+.controls button {
+    display: block;
+    margin-bottom: 0.5em;
+    width: calc(100% - 1em);
+}
+
+canvas {
+    border: 1px solid black;
+    flex-grow: 1;
+    background-color: #f9f9f9;
+}
