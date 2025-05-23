@@ -2,6 +2,8 @@
 
 A web-based browser-only application for creating and editing curves simple curves.
 
+It can be used here: [Curve Editor](https://florenzen.githuib.io/curve-editor)
+
 ## Features
 
 *   **Multiple Curve Types:** Supports various curve interpolations:
