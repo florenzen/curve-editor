@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curve Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Curve Editor</h1>
+    </header>
+    <main>
+        <div class="controls">
+            <h2>Controls</h2>
+            <label for="curve-type">Curve Type:</label>
+            <select id="curve-type">
+                <option value="spline">Spline (Quadratic Bezier)</option>
+                <option value="step">Step</option>
+                <option value="natural">Natural Spline (Catmull-Rom)</option>
+                <option value="naturalCubic">Natural Cubic Spline</option>
+            </select>
+            
+            <!-- Buttons to be removed -->
+            <!-- 
+            <button id="add-point">Add Point</button>
+            <button id="remove-point">Remove Selected Point</button> 
+            -->
+
+            <h2>Coordinate System</h2>
+            <label for="x-max">X-Max:</label>
+            <input type="number" id="x-max" value="100">
+            <button id="update-coords">Update X-Max</button>
+
+            <h2>View Control</h2>
+            <label for="y-zoom">Y-Zoom:</label>
+            <input type="range" id="y-zoom" min="0.1" max="5" value="1" step="0.05">
+            <span id="y-zoom-value">1.00</span>
+            <br>
+            <label for="x-zoom">X-Zoom:</label>
+            <input type="range" id="x-zoom" min="1" max="10" value="1" step="0.1">
+            <span id="x-zoom-value">1.0</span>
+            <button id="reset-view">Reset View</button>
+
+            <h3>File Operations</h3>
+            <label for="filename-input">Filename:</label>
+            <input type="text" id="filename-input" placeholder="Enter base filename">
+            <br>
+            <input type="file" id="load-file-input" accept=".json" style="display: none;">
+            <button id="load-graph-button">Load Graph</button>
+            <button id="download-graph-button">Download Graph</button>
+            <button id="download-csv-button">Download CSV</button>
+        </div>
+        <canvas id="curve-canvas"></canvas>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html> 
