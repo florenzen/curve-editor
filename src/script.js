@@ -2394,10 +2394,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 currentCurveType = loadedData.curveType;
                 xMax = loadedData.xMax;
-                points = loadedData.points.map(p => ({
-                    x: Math.round(parseFloat(p.x)),
-                    y: Math.round(parseFloat(p.y))
-                }));
+                points = loadedData.points.map(p => {
+                    const mapped = {
+                        x: Math.round(parseFloat(p.x)),
+                        y: Math.round(parseFloat(p.y))
+                    };
+                    if (p.type) mapped.type = p.type;
+                    return mapped;
+                });
 
                 curveTypeSelect.value = currentCurveType;
                 xMaxInput.value = xMax;
@@ -2406,7 +2410,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 const justFileName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
                 filenameInput.value = justFileName;
 
-                resetViewButton.click();
+                // Reset view parameters without overwriting loaded points
+                if (currentCurveType === 'spline') {
+                    yViewCenter = 0;
+                    baseVisibleYRange = 2000;
+                } else if (currentCurveType === 'step') {
+                    yViewCenter = 495;
+                    baseVisibleYRange = 1010;
+                } else if (currentCurveType === 'natural' || currentCurveType === 'naturalCubic') {
+                    yViewCenter = 0;
+                    baseVisibleYRange = 2000;
+                    calculateNaturalCubicSplineCoeffs(points);
+                }
+                yZoomFactor = 1;
+                yZoomSlider.value = yZoomFactor;
+                yZoomValueDisplay.textContent = yZoomFactor.toFixed(2);
+                xViewCenter = xMax / 2;
+                xZoomFactor = 1;
+                xZoomSlider.value = xZoomFactor;
+                xZoomValueDisplay.textContent = xZoomFactor.toFixed(1);
                 draw();
 
             } catch (error) {
